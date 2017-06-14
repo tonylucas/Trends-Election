@@ -1,0 +1,108 @@
+page-election {
+    ion-card {
+        .desc {
+            margin-top: 10px;
+            color: #000;
+        }
+    }
+
+    .switch-button {
+        height: 3.3em;
+        font-size: 1.1rem;
+        width: 3.3em;
+    }
+
+    .pictures {
+        // position: absolute;
+        // bottom: 40px;
+        // left: 0;
+        // right: 0;
+        .candidate {
+            width: 20%;
+            max-width: 90px;
+            display: inline-block;
+            padding: 0 5px;
+            position: relative;
+            min-height: 100px;
+            vertical-align: top;
+
+            span {
+                font-size: 11px;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 1.2;
+            }
+
+            img {
+                border-radius: 50%;
+            }
+
+            .color-legend {
+                display: block;
+                width: 6px;
+                height: 6px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .toolbar-background {
+        background: #fff;
+        border-color: transparent;
+    }
+
+    .slides {
+        // padding: 30px 0;
+    }
+
+    .slide-zoom {
+        height: 100%;
+    }
+
+    .slide-title {
+        margin-top: 2.8rem;
+    }
+
+    .slide-image {
+        max-height: 50%;
+        max-width: 60%;
+        margin: 18px 0;
+    }
+
+    b {
+        font-weight: 500;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    .bar-chart {
+        display: block;
+        max-width: 70%;
+        margin: auto;
+        canvas {
+            padding: 20px 0;
+            height: auto !important;
+        }
+    }
+}
+
+ion-content.cards-bg {
+    background-color: #f4f4f7;
+}
+
+.relative {
+    position: relative;
+}
+
+.right {
+    text-align: right;
+}
+
+ion-label {
+    white-space: normal;
+}

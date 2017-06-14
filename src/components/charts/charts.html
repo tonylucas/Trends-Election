@@ -1,0 +1,23 @@
+<canvas baseChart
+        #lineChart=base-chart
+        [hidden]="showAverages"
+        [datasets]="match.trends['now 7-d'].lineCharts.lineChartData"
+        [labels]="match.trends['now 7-d'].lineCharts.lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType">
+</canvas>
+
+<div class="bar-chart">
+    <canvas baseChart
+            #barChart=base-chart
+            [hidden]="!showAverages"
+            [datasets]="match.trends['now 7-d'].barCharts.barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [colors]="barChartColors"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+</div>

@@ -1,0 +1,155 @@
+<ion-header>
+    <ion-navbar no-border-bottom>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="type">
+            <ion-segment-button value="day">
+                Moins d'un jour
+            </ion-segment-button>
+            <ion-segment-button value="week">
+                7 derniers jours
+            </ion-segment-button>
+            <ion-segment-button value="region">
+                Par région
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+
+    <ion-slides pager>
+
+        <ion-slide *ngFor="let match of matchs; let matchIndex = index">
+
+            <div [ngSwitch]="type">
+
+                <ion-card *ngSwitchCase="'day'">
+                    <ion-item>
+                        <h2>{{match.title}}</h2>
+                        <p>{{match.subTitle}}</p>
+                        <p class="desc">Intensité des recherches au cours des 24 heures précédant l’élection</p>
+                    </ion-item>
+
+                    <ion-card-content>
+
+                        <p class="right">
+                            <button ion-button icon-only round [hidden]="!showAverages" (click)="showAverages=!showAverages" class="switch-button">
+                                <ion-icon name="md-trending-up"></ion-icon>
+                            </button>
+
+                            <button ion-button icon-only round [hidden]="showAverages" (click)="showAverages=!showAverages" class="switch-button">
+                                <ion-icon name="stats"></ion-icon>
+                            </button>
+                        </p>
+
+                        <canvas baseChart [hidden]="showAverages"
+                                [datasets]="match.trends['now 1-d'].lineCharts.lineChartData"
+                                [labels]="match.trends['now 1-d'].lineCharts.lineChartLabels"
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors"
+                                [legend]="lineChartLegend"
+                                [chartType]="lineChartType">
+                        </canvas>
+
+                        <div class="bar-chart">
+                            <canvas baseChart [hidden]="!showAverages"
+                                    [datasets]="match.trends['now 1-d'].barCharts.barChartData"
+                                    [labels]="barChartLabels"
+                                    [options]="barChartOptions"
+                                    [colors]="barChartColors"
+                                    [legend]="barChartLegend"
+                                    [chartType]="barChartType">
+                            </canvas>
+                        </div>
+
+                        <div class="pictures">
+                            <div *ngFor="let keyword of match.keywords; let i = index" class="candidate">
+
+                                <div class="relative">
+                                    <img [src]="keyword.twitterAvatar">
+                                    <span class="color-legend" [ngStyle]="{'background': colors[i]}"></span>
+                                </div>
+                                <span>{{keyword.title}}</span>
+                            </div>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+
+
+                <ion-card *ngSwitchCase="'week'">
+                    <ion-item>
+                        <h2>{{match.title}}</h2>
+                        <p>{{match.subTitle}}</p>
+                        <p class="desc">Intensité des recherches au cours des 7 jours précédant l’élection</p>
+                    </ion-item>
+
+
+                    <ion-card-content>
+                        <p class="right">
+                            <button ion-button icon-only round [hidden]="!showAverages" (click)="showAverages=!showAverages;animateChart(matchIndex)" class="switch-button">
+                                <ion-icon name="md-trending-up"></ion-icon>
+                            </button>
+
+                            <button ion-button icon-only round [hidden]="showAverages" (click)="showAverages=!showAverages;animateChart(matchIndex)" class="switch-button">
+                                <ion-icon name="stats"></ion-icon>
+                            </button>
+                        </p>
+
+
+                        <canvas baseChart
+                                #lineChart=base-chart
+                                [hidden]="showAverages"
+                                [datasets]="match.trends['now 7-d'].lineCharts.lineChartData"
+                                [labels]="match.trends['now 7-d'].lineCharts.lineChartLabels"
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors"
+                                [legend]="lineChartLegend"
+                                [chartType]="lineChartType">
+                        </canvas>
+
+                        <div class="bar-chart">
+                            <canvas baseChart
+                                    #barChart=base-chart
+                                    [hidden]="!showAverages"
+                                    [datasets]="match.trends['now 7-d'].barCharts.barChartData"
+                                    [labels]="barChartLabels"
+                                    [options]="barChartOptions"
+                                    [colors]="barChartColors"
+                                    [legend]="barChartLegend"
+                                    [chartType]="barChartType">
+                            </canvas>
+                        </div>
+
+                        <div class="pictures">
+                            <div *ngFor="let keyword of match.keywords; let i = index" class="candidate">
+
+                                <div class="relative">
+                                    <img [src]="keyword.twitterAvatar">
+                                    <span class="color-legend" [ngStyle]="{'background': colors[i]}"></span>
+                                </div>
+                                <span>{{keyword.title}}</span>
+                            </div>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+
+                <ion-card *ngSwitchCase="'region'">
+                    <ion-item>
+                        <h2>{{match.title}}</h2>
+                        <p>{{match.subTitle}}</p>
+                        <p class="desc">Recherches par région</p>
+                    </ion-item>
+                </ion-card>
+            </div>
+
+
+        </ion-slide>
+
+    </ion-slides>
+
+
+</ion-content>
