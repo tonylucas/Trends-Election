@@ -1,8 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
+  "name": "trends-election",
+    "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -53,5 +51,5 @@
       "locator": "ios"
     }
   ],
-  "description": "Projet Perso App: An Ionic project"
+  "description": "Trends Election: visualise Google search interest for election candidates"
 }
