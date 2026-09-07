@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
-  apiEndpoint: 'https://api.tony-lucas.com/'
-  // apiEndpoint: 'http://localhost:3000/'
+    production: true,
+    // Points at a Trends-Election-API instance; see README.
+    apiEndpoint: 'https://<api-host>/'
 };
